@@ -1,0 +1,80 @@
+body {
+    width: 100%;
+    padding: 0;
+    margin: 0;
+    overflow-x: hidden;
+    color: #404040;
+    font-family: PingFangSC, "Microsoft Yahei", Arial, Heiti, SimSun, sans-serif !important;
+    background: #f3f3f4;
+}
+
+img {
+    max-width: 100%;
+}
+
+::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    background-color: rgba(144, 147, 153, 0.3);
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+}
+
+input[type="number"] {
+    -moz-appearance: textfield;
+}
+
+*,
+p {
+    padding: 0;
+    margin: 0;
+}
+
+a {
+    text-decoration: none;
+    cursor: pointer;
+}
+
+li {
+    list-style: none;
+}
+
+input,
+select {
+    outline: none;
+}
+
+option {
+    border: none;
+    outline: none;
+}
+
+input[type="button"],
+button {
+    display: block;
+    border: none;
+    outline: 0;
+    background: #fff;
+}
+
+.lf {
+    float: left;
+}
+
+.rt {
+    float: right;
+}
+
+.clear:after {
+    content: ".";
+    display: block;
+    height: 0;
+    clear: both;
+    visibility: hidden;
+}
+
+.clear {
+    zoom: 1;
+}

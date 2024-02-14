@@ -1,0 +1,81 @@
+#Task {
+    .task-id{
+        font-size: 24px;
+        font-weight: bold;
+        margin: 20px 0 40px 0;
+        text-align: center;
+    }
+    .task-title {
+        font-size: 16px;
+        font-weight: bold;
+        margin-bottom: 20px;
+    }
+
+    .origin-image {
+        margin-bottom: 40px;
+
+        img {
+            width: 500px;
+        }
+    }
+
+    .result-list {
+        .handle-btn{
+            height: 32px;
+        }
+        img {
+            width: 500px;
+        }
+
+        ul>li {
+            display: inline-block;
+            cursor: pointer;
+            position: relative;
+            margin-right: 20px;
+            margin-bottom: 20px;
+
+            .icon-right{
+                position: absolute;
+                right: 0;
+                top: 0
+            }
+
+            .right-active {
+                @include icon(40px,40px,url(#{$imgPath}right-active.png));
+            }
+
+            .right-inactive {
+                @include icon(40px,40px,url(#{$imgPath}right-inactive.png));
+            }
+            .result-image{
+                width: 500px;
+                position: relative;
+                >img{
+                    width: 500px;
+                    position: absolute;
+                    left: 0;
+                    top: 0;
+                }
+            }
+
+            canvas{
+                position: absolute;
+                left: 0;
+            }
+
+            .result-content{
+                text-align: center;
+            }
+        }
+    }
+
+    .btn-next {
+        margin-right: 20px;
+    }
+
+    .wrapper-canvas{
+        width: 800px;
+        border: 1px solid #000;
+    }
+
+}

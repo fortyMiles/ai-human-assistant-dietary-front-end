@@ -1,0 +1,121 @@
+$a:blue;
+$borderGray: #E8E8E8;
+$boxShadow: 0px 0px 8px 0px rgba(0, 0, 0, 0.06);
+$kkbBlue:#5482FB;
+$kkbSuccess:#1BADA9;
+$kkbError:#FD6547;
+$kkbWarn:#FEBC4C;
+$imgPath:'../../assets/img/';
+
+@mixin grad-bottom($color1, $color2) {
+  background: -webkit-linear-gradient(top, $color1, $color2);
+  background: -o-linear-gradient(bottom, $color1, $color2);
+  background: -moz-linear-gradient(bottom, $color1, $color2);
+  background: linear-gradient(to bottom, $color1, $color2);
+}
+
+@mixin grad-right($color1, $color2) {
+  background: -webkit-linear-gradient(left, $color1, $color2);
+  background: -o-linear-gradient(right, $color1, $color2);
+  background: -moz-linear-gradient(right, $color1, $color2);
+  background: linear-gradient(to right, $color1, $color2);
+}
+
+@mixin btn {
+  height: 26px;
+  border-radius: 17px;
+  padding: 0 20px;
+  line-height: 26px;
+  cursor: pointer;
+  color: #404040;
+  box-sizing: border-box;
+}
+
+@mixin btn-grad($color1, $color2) {
+  @include btn;
+  @include grad-right($color1, $color2);
+  color: #fff;
+}
+
+.btn-default {
+  @include btn;
+  border: 1px solid $borderGray;
+}
+
+.btn-primary {
+  @include btn;
+  background: $kkbBlue;
+  color: #fff;
+}
+
+.btn-disabled {
+  @include btn;
+  background: #efefef;
+  color: #a1a1a1;
+}
+
+@mixin icon($w, $h, $bgImg) {
+  display: inline-block;
+  width: $w;
+  height: $h;
+  background-image: $bgImg;
+  vertical-align: middle;
+  background-size: 100% 100%;
+}
+
+.shadow-fixed {
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.4);
+  position: fixed;
+  left: 0;
+  top: 0;
+  z-index: 100;
+
+  &>div {
+    width: 80%;
+    margin: 50vh 0 0 50vw;
+    transform: translate(-50%, -50%);
+
+    .modal-close {
+      width: 30px;
+      float: right;
+      margin: -25px -39px 0 0;
+      cursor: pointer;
+    }
+
+    .line {
+      background: #fff;
+      width: 1px;
+      height: 20px;
+      margin: -5px 0 0 10px;
+    }
+
+    .modal {
+      background: #fff;
+      border-radius: 10px;
+      padding: 20px;
+    }
+  }
+}
+
+.main-title {
+  font-size: 10px;
+  font-weight: bold;
+}
+
+.kkb-success {
+  color: $kkbSuccess;
+}
+
+.kkb-error {
+  color: $kkbError;
+}
+
+.kkb-warn {
+  color: $kkbWarn;
+}
+
+.kkb-primary {
+  color: $kkbBlue;
+}
