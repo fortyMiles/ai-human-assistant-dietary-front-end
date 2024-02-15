@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import './style.scss';
 import { Button } from 'antd';
 import { useNavigate, useSearchParams, useParams } from 'react-router-dom';
-import { RedoOutlined, CheckOutlined, SaveOutlined, EditOutlined } from '@ant-design/icons';
+import { RedoOutlined, CheckOutlined, SaveOutlined, EditOutlined, ArrowLeftOutlined } from '@ant-design/icons';
 import $http from '../../utils/http';
 import originImage from '@/assets/img/image-00.png';
 import originImage2 from '@/assets/img/image2-00.png';
@@ -192,7 +192,14 @@ const Index: React.FC = () => {
 
 	const onSaveClick = () => {
 		saveData(false);
+		goTask();
 	};
+
+	const goIndex = () => {
+		navigate('/');
+	};
+
+
 
 	const saveData = (makesure: boolean) => {
 		const params = {
@@ -220,6 +227,7 @@ const Index: React.FC = () => {
 	return (
 		<div id='Task'>
 			<p className='task-id'>Task ID: {taskId}</p>
+			<Button type='primary' icon={<ArrowLeftOutlined />} onClick={goIndex} ghost>Back to Home</Button>
 			<div className='origin-image'>
 				<img src={taskId === null ? originImage : (parseInt(taskId) % 2 === 0 ? originImage : originImage2)} alt='Origin Image' />
 				<p className='result-content'>original Doc</p>
