@@ -30,7 +30,10 @@ const Index: React.FC = () => {
 		<div id='Index'>
 			<div className='index-content'>
 				<p className='index-title'>
-					File Identification
+					Customer Requirement Document Auto Classification System
+				</p>
+				<p className='index-subtitle'>
+					Therer for 1192 docus need to be processed
 				</p>
 				<div>
 					<Button type='primary' icon={<PlusOutlined />} className='btn-create' onClick={() => goTask('create')}>

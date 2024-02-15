@@ -3,6 +3,7 @@ import './style.scss';
 import { Button } from 'antd';
 import { useNavigate, useSearchParams, useParams } from 'react-router-dom';
 import { RedoOutlined, CheckOutlined, SaveOutlined, EditOutlined } from '@ant-design/icons';
+import $http from '../../utils/http';
 import originImage from '@/assets/img/image-00.png';
 import originImage2 from '@/assets/img/image2-00.png';
 import image01 from '@/assets/img/image-01.png';
@@ -32,6 +33,7 @@ const Index: React.FC = () => {
 	const [context, setContext] = useState<any>(null);
 	const [isAllowDraw, setIsAllowDraw] = useState<boolean>(false);
 	const [isAllowDrawLine, setIsAllowDrawLine] = useState<boolean>(false);
+	const [byMannual, setByMannual] = useState<boolean>(false);
 	const [imageHeight, setImageHeight] = useState<number>(380);
 	const [taskId, setTaskId] = useState<string | null>('');
 	const params = useParams();
@@ -67,18 +69,22 @@ const Index: React.FC = () => {
 	useEffect(() => {
 		if (activeIndex !== null) {
 			setCanvasElem(canvasArr[activeIndex].current);
+			setIsAllowDraw(false);
 		}
 	}, [activeIndex]);
 
 	useEffect(() => {
-		setActiveIndex(randomNum(0, 7));
+		if (params.mode === 'create') {
+			setActiveIndex(0);
+		} else {
+			setActiveIndex(null);
+		}
+
 		let imageArr = [];
 		if (taskId === null || parseInt(taskId) % 2 === 0) {
-			console.log('1');
 			imageArr = [image01, image02, image03, image04, image05];
 			setImageHeight(248);
 		} else {
-			console.log('2');
 			imageArr = [image201, image202, image203, image204, image205];
 			setImageHeight(380);
 		}
@@ -111,10 +117,10 @@ const Index: React.FC = () => {
 		]);
 	}, [taskId]);
 
-	const goTask = (taskMode: string) => {
+	const goTask = () => {
 		const taskId: number = parseInt(search.get('taskId') || '1001');
 		setTaskId(taskId + 1 + '');
-		navigate(`/task/${taskMode}?taskId=${(taskId + 1)}`);
+		navigate(`/task/${params.mode}?taskId=${(taskId + 1)}`);
 	};
 
 	const windowToCanvas = (canvas: any, x: number, y: number) => {
@@ -163,7 +169,6 @@ const Index: React.FC = () => {
 	};
 
 	const onMouseUp = () => {
-		setIsAllowDraw(false);
 		setIsAllowDrawLine(false);
 	};
 
@@ -177,7 +182,40 @@ const Index: React.FC = () => {
 
 	const onResultClick = (index: number) => {
 		setActiveIndex(index);
+		setByMannual(true);
 	};
+
+	const onNextClick = () => {
+		saveData(true);
+		goTask();
+	};
+
+	const onSaveClick = () => {
+		saveData(false);
+	};
+
+	const saveData = (makesure: boolean) => {
+		const params = {
+			'doc_id': taskId,
+			'user_id': '',
+			'top_1': '0',
+			'top_2': '1',
+			'top_3': '2',
+			'top_4': '3',
+			'top_5': '4',
+			'top_6': '5',
+			'final_result': activeIndex,
+			'by_mannual': byMannual,
+			'timestamp': new Date().getTime(),
+			'makesure': makesure
+
+		};
+
+		$http.post('/documentClassifyData', params).then(data => {
+			console.log(data);
+		});
+	};
+
 
 	return (
 		<div id='Task'>
@@ -207,9 +245,9 @@ const Index: React.FC = () => {
 					}
 				</ul>
 			</div>
-			<div>
-				<Button type='primary' icon={<CheckOutlined />} className='btn-next' onClick={() => goTask('create')}>Accept & Go Next</Button>
-				<Button icon={<SaveOutlined />}>Save for Later Edit</Button>
+			<div className='task-btn'>
+				<Button type='primary' icon={<CheckOutlined />} className='btn-next' onClick={onNextClick}>Accept & Go Next</Button>
+				<Button icon={<SaveOutlined />} onClick={onSaveClick}>Save for Later Edit</Button>
 			</div>
 		</div>
 	);

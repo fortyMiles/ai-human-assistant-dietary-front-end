@@ -3,17 +3,17 @@ import {
 	message
 } from 'antd';
 
-const $ajax = axios.create({
+const $http = axios.create({
 	timeout: 10000,
 	responseType: 'json',
 	withCredentials: false,
 	headers: {
-		'Content-Type': 'application/x-www-form-urlencoded;charset=utf-8'
+		'Content-Type': 'application/json;charset=utf-8'
 	}
 });
 
 // POST传参序列化(添加请求拦截器)
-$ajax.interceptors.request.use(
+$http.interceptors.request.use(
 	config => {
 		if (config.method === 'get') {
 			const data = config.data;
@@ -36,19 +36,12 @@ $ajax.interceptors.request.use(
 );
 
 // 返回状态判断(添加响应拦截器)
-$ajax.interceptors.response.use(
-	res => {
-		if (res.data.code === 200) {
-			return Promise.resolve(res.data.data);
-		} else {
-			message.info(res.data.msg);
-			return Promise.resolve(res.data);
-		}
-	},
+$http.interceptors.response.use(
+	res => Promise.resolve(res.data),
 	error => {
 		message.info(error.message);
 		return Promise.reject(error);
 	}
 );
 
-export default $ajax;
+export default $http;
