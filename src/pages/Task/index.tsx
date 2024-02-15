@@ -221,8 +221,8 @@ const Index: React.FC = () => {
 		<div id='Task'>
 			<p className='task-id'>Task ID: {taskId}</p>
 			<div className='origin-image'>
-				<p className='task-title'>Origin Doc : </p>
 				<img src={taskId === null ? originImage : (parseInt(taskId) % 2 === 0 ? originImage : originImage2)} alt='Origin Image' />
+				<p className='result-content'>original Doc</p>
 			</div>
 			<div className='result-list'>
 				<p className='task-title'>Identification Reult : </p>

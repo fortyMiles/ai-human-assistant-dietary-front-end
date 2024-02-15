@@ -33,7 +33,7 @@ const Index: React.FC = () => {
 					Customer Requirement Document Auto Classification System
 				</p>
 				<p className='index-subtitle'>
-					Therer for 1192 docus need to be processed
+					Therer are 1192 Docs need to be processed
 				</p>
 				<div>
 					<Button type='primary' icon={<PlusOutlined />} className='btn-create' onClick={() => goTask('create')}>
