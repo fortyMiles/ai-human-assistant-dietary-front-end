@@ -35,13 +35,15 @@ const DietaryHabit: React.FC = () => {
 			<header>choose what you like</header>
 			<div>
 				<CheckList multiple defaultValue={value} onChange={onCheckListChange}>
+					<CheckList.Item value='Amerian'>Amerian</CheckList.Item>
+					<CheckList.Item value='Germany'>Germany</CheckList.Item>
+					<CheckList.Item value='Italy'>Italan</CheckList.Item>
 					<CheckList.Item value='Chinese'>Chinese</CheckList.Item>
 					<CheckList.Item value='Maxican'>Maxican</CheckList.Item>
 					<CheckList.Item value='Franch'>Franch</CheckList.Item>
 					<CheckList.Item value='Korea'>Korea</CheckList.Item>
-					<CheckList.Item value='Amerian'>Amerian</CheckList.Item>
 					<CheckList.Item value='Spicy'>Spicy</CheckList.Item>
-					<CheckList.Item value='Pratine'>Pratine</CheckList.Item>
+					<CheckList.Item value='Pratine'>Protein</CheckList.Item>
 				</CheckList>
 				{/* <Link to='/add/more' className='add'>
 					<Space>
