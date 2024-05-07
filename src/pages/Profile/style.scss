@@ -19,6 +19,13 @@
         margin-top: 60px;
     }
 
+    .exit-button-container {
+        position: absolute; // Positions the container absolutely within #Profile
+        bottom: 20px; // Distance from the bottom of the #Profile
+        left: 50%; // Moves the container to the middle of the #Profile
+        transform: translateX(-50%); // Centers the button exactly at the middle
+    }
+
     #MyProfile{
         padding: 20px;
         font-size: 20px;
