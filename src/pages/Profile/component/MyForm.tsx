@@ -18,11 +18,11 @@ const Index: React.FC<MyFormProps> = (props) => {
 	const onSubmitClick = () => {
 		form.validateFields().then(() => {
 			console.log(form.getFieldsValue());
-			let birthday = form.getFieldValue('birthday');
-			let age = Math.floor((new Date().getTime() - birthday.getTime()) / (1000 * 60 * 60 * 24 * 365));
+			// let birthday = form.getFieldValue('birthday');
+			// let age = Math.floor((new Date().getTime() - birthday.getTime()) / (1000 * 60 * 60 * 24 * 365));
 			let profile: any = {
 				name: form.getFieldValue('name'),
-				age: age,
+				age: form.getFieldValue('age'),
 				weight: form.getFieldValue('weight'),
 				height: form.getFieldValue('height'),
 				gender: form.getFieldValue('gender'),
@@ -68,19 +68,11 @@ const Index: React.FC<MyFormProps> = (props) => {
 					<Input onChange={console.log} placeholder='please input' clearable />
 				</Form.Item>
 				<Form.Item
-					name='birthday'
-					label='Birthday'
-					rules={[{ required: true, message: 'Birthday is required.' }]}
-					trigger='onConfirm'
-					onClick={(e, datePickerRef: RefObject<DatePickerRef>) => {
-						datePickerRef.current?.open();
-					}}
+					name='age'
+					label='age'
+					rules={[{ required: true, message: 'Age is required.' }]}
 				>
-					<DatePicker>
-						{value =>
-							value ? dayjs(value).format('YYYY-MM-DD') : 'please choose'
-						}
-					</DatePicker>
+					<Input onChange={console.log} placeholder='please input' clearable />
 				</Form.Item>
 				<Form.Item
 					name='gender'
@@ -91,7 +83,7 @@ const Index: React.FC<MyFormProps> = (props) => {
 						<Space direction='horizontal'>
 							<Radio value='male'>male</Radio>
 							<Radio value='famale'>famale</Radio>
-							<Radio value='unknow'>unknow</Radio>
+							<Radio value='other'>other</Radio>
 						</Space>
 					</Radio.Group>
 				</Form.Item>
@@ -112,7 +104,7 @@ const Index: React.FC<MyFormProps> = (props) => {
 				<Form.Item
 					name='allergic'
 					label='Allergic History'
-					rules={[{ required: true, message: 'Allergic History is required.' }]}
+					rules={[{ required: false, message: 'Allergic History is required.' }]}
 				>
 					<Input onChange={console.log} placeholder='please input' clearable />
 				</Form.Item>

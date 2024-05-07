@@ -21,7 +21,7 @@ const Index: React.FC = () => {
 					<Grid.Item span={1}>
 						<Link to='/profile'>
 							<Avatar src={avatarMale} style={{ '--size': '60px' }} />
-							<p>Yuhan</p>
+							<p>Profile</p>
 						</Link>
 					</Grid.Item>
 					<Grid.Item span={1}>
@@ -36,7 +36,6 @@ const Index: React.FC = () => {
 			</header>
 			<div className='content'>
 				<Button color='primary' fill='outline' onClick={onRecommendationClick} className='btn-recommend'>What should I eat today?</Button>
-				<p>Pure AI</p>
 			</div>
 			<footer>
 				<Space>
