@@ -11,13 +11,14 @@ import iconFeedback from '@/assets/img/feedback.png';
 import $http from '../../utils/http';
 
 // 创建可排序的列表项
-const SortableItem = SortableElement<any>(({ index, value }: any) => {
+const SortableItem = SortableElement<any>(({ index, value}: any) => {
 	console.log(index, value);
+
 	return (
 		<List.Item>
 			<div className='list-item'>
 				<div>
-					<span>No {value.rank}</span>
+					<span>rank {value.rank}</span>
 					<p className='list-content'>{value.content}</p>
 					<p>...</p>
 				</div>
@@ -29,7 +30,7 @@ const SortableItem = SortableElement<any>(({ index, value }: any) => {
 );
 
 // 创建可排序的列表容器
-const SortableList = SortableContainer<any>(({ items }: any) => {
+const SortableList = SortableContainer<any>(({ items}: any) => {
 	return (
 		<ul>
 			{
@@ -138,7 +139,7 @@ const SortableComponent: React.FC = () => {
 				<Tabs.Tab title='Rank' key='rank'>
 					<List header='drag to sort'>
 						<DndProvider backend={HTML5Backend}>
-							<SortableList items={items} onSortEnd={onSortEnd} />
+							<SortableList items={items} onSortEnd={onSortEnd}/>
 						</DndProvider>
 					</List>
 				</Tabs.Tab>
