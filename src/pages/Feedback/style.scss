@@ -1,0 +1,47 @@
+#Feedback {
+    height: 100vh;
+    position: relative;
+
+    header {
+        text-align: center;
+        font-size: 24px;
+        line-height: 32px;
+        padding: 20px 0;
+    }
+
+    .list-item {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        font-size: 20px;
+
+    }
+
+    .list-content {
+        font-size: 18px;
+        color: #888;
+        width: 100%;
+        padding-right: 20px;
+        height: 60px;
+        display: block;
+        //white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+
+    .btn-back {
+        position: absolute;
+        bottom: 160px;
+        left: 12px;
+    }
+
+    .popup-title {
+        font-size: 20px;
+        margin-bottom: 20px;
+    }
+
+    .adm-auto-center-content{
+        white-space: pre-wrap !important;
+    }
+
+}

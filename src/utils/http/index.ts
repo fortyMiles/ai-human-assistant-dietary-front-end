@@ -1,10 +1,9 @@
 import axios from 'axios';
-import {
-	message
-} from 'antd';
+import { Modal } from 'antd-mobile';
 
 const $http = axios.create({
-	timeout: 10000,
+	baseURL: 'http://54.226.219.168:8080/',
+	timeout: 20000,
 	responseType: 'json',
 	withCredentials: false,
 	headers: {
@@ -30,7 +29,9 @@ $http.interceptors.request.use(
 		return config;
 	},
 	error => {
-		message.info(error.message);
+		Modal.alert({
+			content: error.message
+		});
 		return Promise.reject(error);
 	}
 );
@@ -39,7 +40,9 @@ $http.interceptors.request.use(
 $http.interceptors.response.use(
 	res => Promise.resolve(res.data),
 	error => {
-		message.info(error.message);
+		Modal.alert({
+			content: error.message
+		});
 		return Promise.reject(error);
 	}
 );

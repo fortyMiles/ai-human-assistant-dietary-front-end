@@ -1,53 +1,60 @@
 import React, { useState } from 'react';
 import './style.scss';
-import { Button, Modal, Input } from 'antd';
-import { useNavigate } from 'react-router-dom';
-import { PlusOutlined, EditOutlined } from '@ant-design/icons';
+import { Button, Space, Avatar, Grid } from 'antd-mobile';
+import { EditSOutline, SetOutline } from 'antd-mobile-icons';
+import { Link, useNavigate } from 'react-router-dom';
+import iconGoal from '@/assets/img/goal.png';
+import avatarMale from '@/assets/img/avatar_male.png';
+import avatarFamale from '@/assets/img/avatar_famale.png';
 
 const Index: React.FC = () => {
 	const navigate = useNavigate();
-	const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
-	const [taskId, setTaskId] = useState<string>('');
 
-	const handleOk = () => {
-		setIsModalOpen(false);
-		navigate(`/task/edit?taskId=${taskId}`);
-	};
-
-	const handleCancel = () => {
-		setIsModalOpen(false);
-	};
-
-	const goTask = (taskMode: string) => {
-		const createTaskId = '1001';
-		navigate(`/task/${taskMode}?taskId=${createTaskId}`);
-	};
-	const onEditClick = () => {
-		setIsModalOpen(true);
+	const onRecommendationClick = () => {
+		navigate('/recommendation');
 	};
 
 	return (
 		<div id='Index'>
-			<div className='index-content'>
-				<p className='index-title'>
-					Customer Requirement Document Auto Classification System
-				</p>
-				<p className='index-subtitle'>
-					Therer are 1192 Docs need to be processed
-				</p>
-				<div>
-					<Button type='primary' icon={<PlusOutlined />} className='btn-create' onClick={() => goTask('create')}>
-						Start a New Task
-					</Button>
-					<Button className='btn-edit' icon={<EditOutlined />} onClick={onEditClick}>
-						Edit Saved Task
-					</Button>
-				</div>
+			<header>
+				<Grid columns={2}>
+					<Grid.Item span={1}>
+						<Link to='/profile'>
+							<Avatar src={avatarMale} style={{ '--size': '60px' }} />
+							<p>Yuhan</p>
+						</Link>
+					</Grid.Item>
+					<Grid.Item span={1}>
+						<Link to='/goal'>
+							<Space>
+								<Avatar src={iconGoal} style={{ '--size': '32px' }} />
+								<span className='my-goal'>My Goal</span>
+							</Space>
+						</Link>
+					</Grid.Item>
+				</Grid>
+			</header>
+			<div className='content'>
+				<Button color='primary' fill='outline' onClick={onRecommendationClick} className='btn-recommend'>What should I eat today?</Button>
+				<p>Pure AI</p>
 			</div>
-			<Modal title="Doc ID" open={isModalOpen} onOk={handleOk} onCancel={handleCancel}>
-				<Input placeholder="Please Input Doc ID" value={taskId} allowClear onChange={(e) => setTaskId(e.target.value)} />
-			</Modal>
-		</div>
+			<footer>
+				<Space>
+					<Button onClick={() => navigate('/feedback')}>
+						<Space>
+							<EditSOutline />
+							feedback
+						</Space>
+					</Button>
+					<Button onClick={() => navigate('/mode')}>
+						<Space>
+							<SetOutline />
+							mode
+						</Space>
+					</Button>
+				</Space>
+			</footer>
+		</div >
 	);
 };
 

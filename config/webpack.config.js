@@ -27,7 +27,7 @@ const ForkTsCheckerWebpackPlugin =
 		require('react-dev-utils/ForkTsCheckerWarningWebpackPlugin') :
 		require('react-dev-utils/ForkTsCheckerWebpackPlugin');
 const ReactRefreshWebpackPlugin = require('@pmmmwh/react-refresh-webpack-plugin');
-
+const px2rem = require('postcss-px2rem-exclude');
 const createEnvironmentHash = require('./webpack/persistentCache/createEnvironmentHash');
 
 // Source maps are resource heavy and can cause out of memory issue for large source files.
@@ -161,6 +161,7 @@ module.exports = function (webpackEnv) {
 									stage: 3,
 								},
 							],
+							px2rem({ remUnit: 75, exclude: /node_modules/i })
 						],
 					},
 					sourceMap: isEnvProduction ? shouldUseSourceMap : isEnvDevelopment,
