@@ -2,8 +2,8 @@ import axios from 'axios';
 import { Modal } from 'antd-mobile';
 
 const $http = axios.create({
-	baseURL: 'http://54.226.219.168:8080/',
-	timeout: 20000,
+	baseURL: 'http://107.23.162.117:8080/',
+	timeout: 50000,
 	responseType: 'json',
 	withCredentials: false,
 	headers: {
